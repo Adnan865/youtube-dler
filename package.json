@@ -1,6 +1,6 @@
 {
   "name": "youtube-dler",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "A command line tool to download youtube videos/audio and playlists",
   "main": "app.js",
   "bin": {
@@ -31,6 +31,6 @@
     "audio",
     "music",
     "video",
-    "cli",
+    "cli"
   ]
 }

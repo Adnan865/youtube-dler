@@ -13,6 +13,6 @@ exports.dlVideo = function(apiKey, title, videoId, audio, quality, path) {
     });
     helpers.beautify("Downloading https://www.youtube.com/watch?v=" + videoId + "\n");
     helpers.downloadVideo(videoId, title, audio, quality, path, function() {
-        helpers.beautify("finished downloading");
+        helpers.beautify("finished downloading ( " + path + " )");
     });
 }

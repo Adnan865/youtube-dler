@@ -20,7 +20,7 @@ function dlPlayListRecursive(playlistId, pageToken, audio, quality, resume, path
                         if (data.nextPageToken) {
                             return dlPlayListRecursive(playlistId, data.nextPageToken, audio, quality, 0, path, check);
                         } else if (!check) {
-                            helpers.beautify("Finished Downloading");
+                            helpers.beautify("Finished Downloading ( " + path + " )");
                             i = -1;
                             helpers.beautify("Performing a check");
                             return dlPlayListRecursive(playlistId, null, audio, quality, 0, path, 1);

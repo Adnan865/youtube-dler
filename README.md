@@ -17,7 +17,7 @@ Commands:
   tracks    Add track info to a downloaded playlist
 ```
 ```
-./app.js video <ID> [options]
+youtube-dler video <ID> [options]
 
 Options:
   -a, --audio-only  Only download the audio as an mp3
@@ -27,7 +27,7 @@ Options:
   -h, --help        Show help
 ```
 ```
-./app.js playlist <ID> [options]
+youtube-dler playlist <ID> [options]
 
 Options:
   -a, --audio-only  Only download the audio as an mp3
@@ -38,7 +38,7 @@ Options:
   -h                Show help
 ```
 ```
-./app.js tracks <folder> [options]
+youtube-dler tracks <folder> [options]
 
 Options:
   --ar, --artist  Artist name
@@ -54,4 +54,6 @@ These are some of the things I intend to do with this project:
 - Rewrite parts that are using ytdl-core.
 - Support additional platforms (deezer? soundcloud?).
 - Get the lyrics too.
+- Guess the file name from video name.
+- Download all videos in a channel.
 - GUI tool ([electron](http://electron.atom.io/)?).
