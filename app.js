@@ -10,6 +10,8 @@ var figlet = require('figlet');
 var helpers = require('./app/helpers');
 var os = require('os');
 
+var cwd = process.cwd();
+
 figlet.text('Youtube-Dler', {
     font: 'Doom',
     horizontalLayout: 'default',
@@ -57,11 +59,18 @@ figlet.text('Youtube-Dler', {
             .alias('h', 'help')
             .example('./$0 video wZZ7oFKsKzY', 'Downloads the video located at https://youtu.be/wZZ7oFKsKzY')
             .argv
-        helpers.ensureExists(os.homedir() + '/youtube-dler/', function(err) {
+        helpers.ensureExists(helpers.resolvePath(cwd), function(err) {
             if (err) {
                 return helpers.uglify("Error: Can't create the downloads folder", err);
             } else {
-                require('./app/video').dlVideo(argv.k, argv.o, argv._[1], argv.a, argv.q, os.homedir() + '/youtube-dler/');
+                require('./app/video').dlVideo(
+                    argv.k,
+                    argv.o,
+                    argv._[1],
+                    argv.a,
+                    argv.q,
+                    helpers.resolvePath(cwd)
+                );
             }
         });
 
@@ -92,11 +101,18 @@ figlet.text('Youtube-Dler', {
             .help('h')
             .example('./$0 playlist RDwZZ7oFKsKzY', 'Downloads the playlist with list id of RDwZZ7oFKsKzY')
             .argv
-        helpers.ensureExists(os.homedir() + '/youtube-dler/', function(err) {
+        helpers.ensureExists(helpers.resolvePath(argv.o || cwd), function(err) {
             if (err) {
                 return helpers.uglify("Error: Can't create the downloads folder", err);
             } else {
-                require('./app/playlist').dlPlaylist(argv.k, argv._[1], argv.a, argv.q, !argv.r, os.homedir() + '/youtube-dler/' + argv.o);
+                require('./app/playlist').dlPlaylist(
+                    argv.k,
+                    argv._[1],
+                    argv.a,
+                    argv.q,
+                    !argv.r,
+                    helpers.resolvePath(argv.o || cwd)
+                );
             }
         });
     } else if (command === 'tracks') {
@@ -119,7 +135,7 @@ figlet.text('Youtube-Dler', {
             .help('h')
             .example('./$0 tracks sia --artist sia --album "1000 Forms Of Fear"')
             .argv;
-        require('./app/tracks')(os.homedir() + '/youtube-dler/' + argv._[1], argv.ar, argv.al, argv.c);
+        require('./app/tracks')(helpers.resolvePath(argv._[1] || cwd), argv.ar, argv.al, argv.c);
     } else {
         yargs.showHelp();
     }
