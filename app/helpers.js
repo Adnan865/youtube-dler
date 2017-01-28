@@ -85,6 +85,9 @@ module.exports = {
         console.log(chalk.bold('encoding:'), meta.encoding);
         console.log(chalk.bold('size:'), this.toHumanSize(meta.size) + ' (' + meta.size + ' bytes)');
     },
+    resolvePath: function(destPath) {
+        return path.resolve(path.relative(process.cwd(), destPath));
+    },
     downloadVideo: function(id, title, audio, quality, path, next, check) {
         var self = this;
         var uri = "https://www.youtube.com/watch?v=" + id;
